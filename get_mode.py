@@ -30,22 +30,11 @@ def disconnect():
 
 def get_msg():
         global s
-        msg = "game_msg on;"
-        aasgrb = s.send(msg.encode('utf-8'))
+        msg = "robot battery ?;"
+        a = s.send(msg.encode('utf-8'))
+        print(a)
         print('send')
-        msg = "game msg push [cmdid,len, mouse_press, mouse_x, mouse_y];"
-        s.send(msg.encode('utf-8'))
         print("msg")
-        print('a:',aasgrb)
-        try:
-                # 等待机器人返回执行结果
-                print('try')
-                buf = s.recv(1024)
-                print('buf')
-                print(buf.decode('utf-8'))
-        except socket.error as e:
-                print("Error receiving :", e)
-                sys.exit(1)
 
 if __name__ == '__main__':
         connect()
