@@ -1,8 +1,12 @@
+# -*- encoding: utf-8 -*-
+# 测试环境：Python 3.6 版本
+
 import socket
 import sys
 
-# 直连模式下，机器人默认 IP 地址为 192.168.2.1, 控制命令端口号为 40923
-host = "192.168.2.1"
+# 组网模式下，机器人当前 IP 地址为 192.168.1.176, 控制命令端口号为 40923
+# 机器人 IP 地址根据实际 IP 进行修改
+host = "192.168.1.176"
 port = 40923
 
 def connect():
@@ -18,34 +22,28 @@ def connect():
 
         print("Connected!")
 
+def disconnect():
+        global s
+        s.shutdown(socket.SHUT_WR)
+        s.close()
 
-def  get_msg():
-        
-        while True:
+def get_msg():
+        global s
 
-                # 等待用户输入控制指令
-                msg = input(">>> please input SDK cmd: ")
 
-                # 当用户输入 Q 或 q 时，退出当前程序
-                if msg.upper() == 'Q':
-                        break
+def main():
 
-                # 添加结束符
-                msg += ';'
+        msg = "game_msg on;"
+        s.send(msg.encode('utf-8'))
+        try:
+                # 等待机器人返回执行结果
+                buf = s.recv(1024)
 
-                # 发送控制命令给机器人
-                s.send(msg.encode('utf-8'))
-
-                try:
-                        # 等待机器人返回执行结果
-                        buf = s.recv(1024)
-
-                        print(buf.decode('utf-8'))
-                except socket.error as e:
-                        print("Error receiving :", e)
-                        sys.exit(1)
-                if not len(buf):
-                        break
+                print(buf.decode('utf-8'))
+        except socket.error as e:
+                print("Error receiving :", e)
+                sys.exit(1)
+        if not len(buf):
 
         # 关闭端口连接
         s.shutdown(socket.SHUT_WR)
@@ -53,3 +51,8 @@ def  get_msg():
 
 if __name__ == '__main__':
         connect()
+        while (True):
+                get_msg()
+                if ():
+                        break
+        disconnect()
