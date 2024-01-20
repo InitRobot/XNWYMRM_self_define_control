@@ -24,6 +24,7 @@ get_mode.py 用于测试wifi模式
     修改wifi为USB
 - 14:49 成功连接USB
 - 16:13 编写connect_USB_fire.py，发现***一定要写try(用于接收OUT)***
+- 16:49 完成connect_USB_fire.py封装
 
 
 ## 参考资料
