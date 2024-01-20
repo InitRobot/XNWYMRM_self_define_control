@@ -2,6 +2,8 @@
 此内容用于对RM机器人的控制方式经行自定义
 
 ## README
+SDK_.py 包含有基本的函数封装
+
 connect_direct.py 为开发者文档中直连的内容
 connect_wifi.py 为开发者文档中wifi连接的内容
 connect_USB.py 为开发者文档中USB连接的内容
@@ -25,6 +27,7 @@ get_mode.py 用于测试wifi模式
 - 14:49 成功连接USB
 - 16:13 编写connect_USB_fire.py，发现***一定要写try(用于接收OUT)***
 - 16:49 完成connect_USB_fire.py封装
+- 17:06 完成SDK_.py对于函数的封装
 
 
 ## 参考资料
