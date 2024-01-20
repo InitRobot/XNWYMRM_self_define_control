@@ -55,7 +55,7 @@ if __name__ == '__main__':
         connect_TCP()
         i = 0
         #print('1')
-        msg = "commend;"
+        msg = "command;"
         s.send(msg.encode('utf-8'))
         while (i <= 9):
                 i += 1
