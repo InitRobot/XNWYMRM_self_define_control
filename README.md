@@ -28,7 +28,17 @@ get_mode.py 用于测试wifi模式
 - 16:13 编写connect_USB_fire.py，发现***一定要写try(用于接收OUT)***
 - 16:49 完成connect_USB_fire.py封装
 - 17:06 完成SDK_.py对于函数的封装
+- 17:39 补充SDK_.py(/SDK_get_msg)对于等待回复的函数，开始研究数据推送
 
+
+## SDK_.py说明
+- connect_TCP():      与机器人控制命令端口建立 TCP 连接
+- disconnect():       关闭端口连接
+- try_get(timeout=5):     这个函数默认等待5秒钟，如果在这个时间内没有收到机器人的返回结果，就会立即返回'no_OUT'。如果收到了机器人的返回结果，就会解码并返回结果字符串。
+- IN(message):检测并向机器发送message，并输出
+- OUT():检测机器回复，并输出
+- IN_OUT(message):检测并向机器发送message，检测机器回复，并输出
+- connect_enter_SDK(): 与机器人控制命令端口建立 TCP 连接，并进入SDK模式控制
 
 ## 参考资料
 - RM开发者文档：https://robomaster-dev.readthedocs.io/zh-cn/latest/
