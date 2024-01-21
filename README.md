@@ -2,7 +2,8 @@
 此内容用于对RM机器人的控制方式经行自定义
 
 ## README
-SDK_.py 包含有基本的函数封装
+SDK_.py 包含有TPC基本的函数封装
+Message_Delivery.py 包含有UDP基本的函数封装
 
 connect_direct.py 为开发者文档中直连的内容
 connect_wifi.py 为开发者文档中wifi连接的内容
@@ -11,6 +12,10 @@ connect_USB_fire.py 测试发射一次
 get_msg.py 为直连模式，用于测试赛事引擎数据
 get_IP.py 为wifi模式获取机器IP地址
 get_mode.py 用于测试wifi模式
+
+
+
+/study为对于他人代码的学习
 
 
 ## 工程日志
@@ -36,7 +41,10 @@ get_mode.py 用于测试wifi模式
 - 11:14 研究UDP
 - 11:35 无法理解为什么UDP没有收到信息
 - 12:56 尝试并放弃了RMSDK
-
+- 14:27 加入study文件夹学习他人
+- 14:36 发现在UDP中要使用0.0.0.0作为IP地址，并使用bind
+- 14:42 成功获取键位数据
+- 
 
 ## SDK_.py说明
 - connect_TCP():      与机器人控制命令端口建立 TCP 连接

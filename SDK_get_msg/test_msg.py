@@ -4,11 +4,10 @@ import time
 
 
 SDK_.connect_enter_SDK()
-
-SDK_.IN_OUT("chassis push attitude on;")
-SDK_.IN_OUT("chassis push freq 10;")
-SDK_.disconnect()
-time.sleep(1)
+#SDK_.IN_OUT("chassis status ?;")
+SDK_.IN_OUT("game_msg on;")
+#SDK_.IN_OUT("chassis push freq 10;")
+#time.sleep(1)
 Message_Delivery.connect_UDP()
 for i in range(1,5):
     #print("try TCP")
@@ -16,4 +15,6 @@ for i in range(1,5):
     print("try UDP")
     print(Message_Delivery.try_get(timeout = 1))
 #SDK_.IN_OUT("game msg push [0, 6, 1, 0, 0, 255, 1, 199];")
+SDK_.IN_OUT("game_msg off;")
 Message_Delivery.disconnect()
+SDK_.disconnect()
