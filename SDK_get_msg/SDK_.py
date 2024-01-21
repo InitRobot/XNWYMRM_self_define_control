@@ -26,18 +26,7 @@ def disconnect():# 关闭端口连接
         TCP_socket.shutdown(socket.SHUT_WR)
         TCP_socket.close()
         print("TCP disconnected!")
-'''
-def try_get():# 等待机器人返回执行结果
-        result = ''
-        try:
-                # 等待机器人返回执行结果
-                buf = s.recv(1024)
-                result = (buf.decode('utf-8'))
-        except socket.error as e:
-                print("Error receiving :", e)
-                sys.exit(1)
-        return result
-'''
+
 def try_get(timeout=5):#这个函数默认等待5秒钟，如果在这个时间内没有收到机器人的返回结果，就会立即返回空字符串。如果收到了机器人的返回结果，就会解码并返回结果字符串。
     result = ''
     try:
@@ -76,4 +65,6 @@ def IN_OUT(message, timeout=5):#检测并向机器发送message，检测机器�
 
 def connect_enter_SDK(timeout=5):# 与机器人控制命令端口建立 TCP 连接，并进入SDK模式控制
         connect_TCP()
+        IN_OUT("command;", timeout)
+        IN_OUT("quit;", timeout)#DJI的小BUG，以免图传卡住
         IN_OUT("command;", timeout)
