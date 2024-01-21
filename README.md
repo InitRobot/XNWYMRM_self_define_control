@@ -29,6 +29,7 @@ get_mode.py 用于测试wifi模式
 - 16:49 完成connect_USB_fire.py封装
 - 17:06 完成SDK_.py对于函数的封装
 - 17:39 补充SDK_.py(/SDK_get_msg)对于等待回复的函数，开始研究数据推送
+- 17:57 发现接收消息推送要在UDP中，下班
 
 
 ## SDK_.py说明
