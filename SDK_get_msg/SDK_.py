@@ -6,26 +6,26 @@ import select
 host = "192.168.42.2"
 port = 40923
 
-# other code
-
 def connect_TCP():# 与机器人控制命令端口建立 TCP 连接
-        global s
+        global TCP_socket
         address = (host, int(port))
 
         # 与机器人控制命令端口建立 TCP 连接
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        TCP_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        print("Connecting...")
+        print("Connecting_TCP...")
 
-        s.connect(address)
+        TCP_socket.connect(address)
 
-        print("Connected!")
+        print("TCP_Connected!")
 
 def disconnect():# 关闭端口连接
-        global s
+        global TCP_socket
         # 关闭端口连接
-        s.shutdown(socket.SHUT_WR)
-        s.close()
+        print("TCP disconnecting...")
+        TCP_socket.shutdown(socket.SHUT_WR)
+        TCP_socket.close()
+        print("TCP disconnected!")
 '''
 def try_get():# 等待机器人返回执行结果
         result = ''
@@ -42,10 +42,10 @@ def try_get(timeout=5):#这个函数默认等待5秒钟，如果在这个时间�
     result = ''
     try:
         # 设置超时时间
-        ready = select.select([s], [], [], timeout)
+        ready = select.select([TCP_socket], [], [], timeout)
         if ready[0]:
             # 如果有可读数据，接收并解码
-            buf = s.recv(1024)
+            buf = TCP_socket.recv(1024)
             result = buf.decode('utf-8')
         else:
                 result = 'no_OUT'
@@ -58,22 +58,22 @@ def IN(message):#检测并向机器发送message，并输出
         # in_message为要发送的指令
         if ( str(type(message)) == "<class 'str'>" ) and (message[-1] == ';') :
                 print('IN:' , message)
-                s.send(message.encode('utf-8'))
+                TCP_socket.send(message.encode('utf-8'))
         else:
                 print('please input str that ends with ";"')
 
-def OUT():#检测机器回复，并输出
+def OUT(timeout=5):#检测机器回复，并输出
         result = ''
-        result = try_get()
+        result = try_get(timeout)
         print("OUT:", result)
         return result
 
-def IN_OUT(message):#检测并向机器发送message，检测机器回复，并输出
+def IN_OUT(message, timeout=5):#检测并向机器发送message，检测机器回复，并输出
         result = ''
         IN(message)
-        result = OUT()
+        result = OUT(timeout)
         return result
 
-def connect_enter_SDK():# 与机器人控制命令端口建立 TCP 连接，并进入SDK模式控制
+def connect_enter_SDK(timeout=5):# 与机器人控制命令端口建立 TCP 连接，并进入SDK模式控制
         connect_TCP()
-        IN_OUT("command;")
+        IN_OUT("command;", timeout)

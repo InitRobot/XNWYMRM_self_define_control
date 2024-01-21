@@ -31,6 +31,12 @@ get_mode.py 用于测试wifi模式
 - 17:39 补充SDK_.py(/SDK_get_msg)对于等待回复的函数，开始研究数据推送
 - 17:57 发现接收消息推送要在UDP中，下班
 
+20240121
+    开始研究UDP
+- 11:14 研究UDP
+- 11:35 无法理解为什么UDP没有收到信息
+- 12:56 尝试并放弃了RMSDK
+
 
 ## SDK_.py说明
 - connect_TCP():      与机器人控制命令端口建立 TCP 连接
@@ -43,3 +49,4 @@ get_mode.py 用于测试wifi模式
 
 ## 参考资料
 - RM开发者文档：https://robomaster-dev.readthedocs.io/zh-cn/latest/
+- UDP:https://blog.csdn.net/weixin_51570574/article/details/132503864?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522170580572816800211557416%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=170580572816800211557416&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-132503864-null-null.142^v99^pc_search_result_base8&utm_term=UDP&spm=1018.2226.3001.4187

@@ -1,5 +1,5 @@
-import SDK_
+import SDK_out
 
-SDK_.connect_enter_SDK()
-SDK_.IN_OUT('blaster fire;')
-SDK_.disconnect
+SDK_out.connect_enter_SDK()
+SDK_out.IN_OUT('blaster fire;')
+SDK_out.disconnect
