@@ -4,6 +4,7 @@
 ## README
 SDK_.py 包含有TPC基本的函数封装
 Message_Delivery.py 包含有UDP基本的函数封装
+MSG_Solve.py 包含有解析game_msg的函数封装
 
 connect_direct.py 为开发者文档中直连的内容
 connect_wifi.py 为开发者文档中wifi连接的内容
@@ -44,7 +45,7 @@ get_mode.py 用于测试wifi模式
 - 14:27 加入study文件夹学习他人
 - 14:36 发现在UDP中要使用0.0.0.0作为IP地址，并使用bind
 - 14:42 成功获取键位数据
-- 
+- 15:18 完成MSG_Solve.py中的赛事数据编辑
 
 ## SDK_.py说明
 - connect_TCP():      与机器人控制命令端口建立 TCP 连接
