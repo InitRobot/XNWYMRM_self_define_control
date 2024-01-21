@@ -12,3 +12,14 @@ def solve_game(msg):#用于解析赛事数据推送
     else:
         print('please give a game msg push')
     return result
+
+def solve_key(msg):
+    result = []
+    key_n = msg[6]
+    print(key_n)
+    if key_n != 0:
+        keys = msg[0 - key_n: ]
+        print(keys)
+        print(type(keys))
+        result = keys
+    return result
