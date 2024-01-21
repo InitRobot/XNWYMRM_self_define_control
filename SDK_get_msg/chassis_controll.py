@@ -7,6 +7,7 @@ import Chassis_Move
 SDK_.connect_enter_SDK()
 Message_Delivery.connect_UDP()
 SDK_.IN_OUT("game_msg on;")
+SDK_.IN_OUT("robot mode free;")
 
 for i in range(1,500):
     game_msg = Message_Delivery.try_get(timeout = 1)
@@ -15,7 +16,11 @@ for i in range(1,500):
     key_list = MSG_Solve.solve_key(game_msg)
     key_name_list = MSG_Solve.solve_key_name(key_list)
     print(key_name_list)
-    wheel_spin = Chassis_Solve.Stright_Solve(key_name_list)
+
+    gimbal_msg = SDK_.IN_OUT("gimbal attitude ?;")
+    gimbal = MSG_Solve.solve_gimbal(gimbal_msg)
+    wheel_spin = Chassis_Solve.Disk_solve(key_name_list, gimbal[1])
+    #wheel_spin = Chassis_Solve.Stright_Solve(key_name_list)
     print(wheel_spin)
     Chassis_Move.move(wheel_spin)
 

@@ -44,3 +44,18 @@ def solve_key_name(keys):#将获得键位转换为真实名称
             key_name_list.append("Caps")
     result = key_name_list
     return result
+
+def solve_gimbal(msg):
+    result = ''
+    if msg[-1] == ';':
+        #print('right_start')
+        info = msg[:-2]
+        #print(info)
+        info_list = info.split(' ')
+        #print(info_list)
+        info_list_int = [ float(i) for i in info_list ]
+        #print(info_list_int)
+        result = info_list_int
+    else:
+        print('please give a gimbal msg push')
+    return result
