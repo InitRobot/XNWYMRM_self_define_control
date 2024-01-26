@@ -11,20 +11,25 @@ SDK_.IN_OUT("robot mode free;")
 
 for i in range(1,500):
     game_msg = Message_Delivery.try_get(timeout = 1)
+    print(game_msg)
     game_msg = MSG_Solve.solve_game(game_msg)
     print(game_msg)
     key_list = MSG_Solve.solve_key(game_msg)
     key_name_list = MSG_Solve.solve_key_name(key_list)
     print(key_name_list)
-
+    print('1')
     gimbal_msg = SDK_.IN_OUT("gimbal attitude ?;")
     gimbal = MSG_Solve.solve_gimbal(gimbal_msg)
+    
+    #Try W
+    #key_name_list = ['D']
+
     wheel_spin = Chassis_Solve.Disk_solve(key_name_list, gimbal[1])
     #wheel_spin = Chassis_Solve.Stright_Solve(key_name_list)
     print(wheel_spin)
     Chassis_Move.move(wheel_spin)
 
-
+Chassis_Move.move([0,0,0,0])
 SDK_.IN_OUT("game_msg off;")
 Message_Delivery.disconnect()
 SDK_.disconnect()
