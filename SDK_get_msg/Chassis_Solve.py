@@ -1,4 +1,5 @@
 import math
+import SDK_
 
 forward_speed = 90
 backward_speed = 50
@@ -6,6 +7,9 @@ side_speed = 50
 
 
 def Stright_Solve(keys):
+    #SDK_.IN_OUT("gimbal recenter;")
+    
+    
     result = []
     #对应    左右
     wheel = [0,0,#前(head)
@@ -34,6 +38,7 @@ def Stright_Solve(keys):
     return result
 
 def Disk_solve(keys, degree, spin = 1):
+    SDK_.IN_OUT("robot mode free;")
         #对应        左右
     wheel_stright = [0,0,#前(head)
                      0,0]#后(tail)
