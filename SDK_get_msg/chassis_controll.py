@@ -9,7 +9,7 @@ Message_Delivery.connect_UDP()
 SDK_.IN_OUT("game_msg on;")
 SDK_.IN_OUT("robot mode free;")
 #SDK_.IN_OUT("robot mode gimbal_lead;")
-for i in range(1,500):
+while True:
     game_msg = Message_Delivery.try_get(timeout = 1)
     print(game_msg)
     game_msg = MSG_Solve.solve_game(game_msg)
