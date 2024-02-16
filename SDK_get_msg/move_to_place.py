@@ -3,10 +3,11 @@ import Message_Delivery
 import MSG_Solve
 import Chassis_Solve
 import Chassis_Move
+import matplotlib.pyplot as plt
 
 
-kp = 1
-target = 1
+kp = 0.5
+target = 0.5
 error_list = []
 
 SDK_.connect_enter_SDK(printing=False)
@@ -14,7 +15,7 @@ Message_Delivery.connect_UDP(printing=False)
 SDK_.IN_OUT("game_msg on;",printing=False)
 SDK_.IN_OUT("chassis push position on pfreq 50;",printing=False)
 SDK_.IN_OUT("robot mode free;",printing=False)
-for i in range(1,100):
+for i in range(1,200):
     print(i)
     msg = Message_Delivery.try_get(timeout = 1,printing=False)
     chassis_position = []
@@ -28,3 +29,5 @@ for i in range(1,100):
         print("--------------",x_speed)
         SDK_.IN_OUT("chassis speed x " + str(x_speed) + " y 0 z 0;",printing=True)
 print(error_list)
+plt.plot(range(1,200),error_list)
+plt.show()
