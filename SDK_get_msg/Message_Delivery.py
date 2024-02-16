@@ -6,20 +6,22 @@ import select
 host = "0.0.0.0"
 port = 40924
 
-def connect_UDP():# 与机器人控制命令端口建立 UDP 连接
+def connect_UDP(printing = True):# 与机器人控制命令端口建立 UDP 连接
         global udp_socket
         address = (host, int(port))
 
         # 与机器人控制命令端口建立 UDP 连接
         udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-        print("Connecting_UDP...")
+        if printing:
+            print("Connecting_UDP...")
 
         udp_socket.bind(address)
 
-        print("UDP_Connected!")
+        if printing:
+            print("UDP_Connected!")
 
-def try_get(timeout=5):#这个函数默认等待5秒钟，如果在这个时间内没有收到机器人的返回结果，就会立即返回空字符串。如果收到了机器人的返回结果，就会解码并返回结果字符串。
+def try_get(timeout=5,printing = True):#这个函数默认等待5秒钟，如果在这个时间内没有收到机器人的返回结果，就会立即返回空字符串。如果收到了机器人的返回结果，就会解码并返回结果字符串。
     result = ''
     try:
         # 设置超时时间
@@ -33,12 +35,17 @@ def try_get(timeout=5):#这个函数默认等待5秒钟，如果在这个时间�
         else:
                 result = 'no_OUT'
     except socket.error as e:
-        print("Error receiving :", e)
+        if printing:
+            print("Error receiving :", e)
         sys.exit(1)
+    if printing:
+         print(result)
     return result
 
-def disconnect():
-        print("UDP disconnecting...")
+def disconnect(printing = True):
+        if printing:
+            print("UDP disconnecting...")
         udp_socket.close()
-        print("UDP disconnected!")
+        if printing:
+            print("UDP disconnected!")
 

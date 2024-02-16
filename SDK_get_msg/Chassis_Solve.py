@@ -6,7 +6,7 @@ backward_speed = 50
 side_speed = 50
 
 
-def Stright_Solve(keys):
+def Stright_Solve(keys, printing = True):
     #SDK_.IN_OUT("gimbal recenter;")
     
     
@@ -33,12 +33,13 @@ def Stright_Solve(keys):
             wheel[i] = 1
         elif wheel[i] < 0:
             wheel[i] = -1
-    print(wheel)
+    if printing:
+        print(wheel)
     result = wheel
     return result
 
-def Disk_solve(keys, degree, spin = 1):
-    SDK_.IN_OUT("robot mode free;")
+def Disk_solve(keys, degree, spin = 1,printing = True):
+    SDK_.IN_OUT("robot mode free;",printing=printing)
         #对应        左右
     wheel_stright = [0,0,#前(head)
                      0,0]#后(tail)
@@ -78,7 +79,8 @@ def Disk_solve(keys, degree, spin = 1):
         wheel_stright_D[3] = math.sin((degreed / 180 - 0.25)* math.pi)
         wheel_stright.append(wheel_stright_D)
 
-    print('str',wheel_stright)
+    if printing:
+        print('str',wheel_stright)
     if len(keys) == 2 or len(keys) == 4 or len(keys) == 5:
         wheel_spin = wheel_stright[-1]
 
@@ -88,7 +90,8 @@ def Disk_solve(keys, degree, spin = 1):
 
 
     #spin
-    print('sp',wheel_spin)
+    if printing:
+        print('sp',wheel_spin)
     wheel_spin[0] = (wheel_spin[0] + 1) / 2
     wheel_spin[1] = (wheel_spin[1] - 1) / 2
     wheel_spin[2] = (wheel_spin[2] + 1) / 2
