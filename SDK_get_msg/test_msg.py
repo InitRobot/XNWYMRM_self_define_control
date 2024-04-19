@@ -21,7 +21,7 @@ for i in range(1,50):
     key_list = MSG_Solve.solve_key(game_msg)
     if 87 in key_list:
         print('right')
-        SDK_.IN_OUT("gimbal move p 10;")
+        #SDK_.IN_OUT("gimbal move p 10;")
 #SDK_.IN_OUT("game msg push [0, 6, 1, 0, 0, 255, 1, 199];")
 SDK_.IN_OUT("game_msg off;")
 Message_Delivery.disconnect()
